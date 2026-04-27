@@ -1,0 +1,58 @@
+# Bağımlılıklar
+node_modules/
+.pnpm-store/
+
+# Çevresel Değişkenler (Şifreler ve Ayarlar)
+.env
+.env.*
+!.env.example
+*.local
+
+# Derleme ve Çıktı Dosyaları
+dist/
+build/
+.next/
+.nuxt/
+out/
+.output/
+.vercel/
+
+# TypeScript ve Cache
+*.tsbuildinfo
+.eslintcache
+.cache/
+.parcel-cache/
+
+# Log Dosyaları
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# İşletim Sistemi Dosyaları
+.DS_Store
+Thumbs.db
+
+# IDE ve Editör Klasörleri
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Veritabanı ve Medya (Geliştirme Ortamı)
+apps/server/public/uploads/
+apps/server/sqlite.db
+*.sqlite
+*.sqlite3
+
+# Test Raporları
+coverage/
+.nyc_output/
