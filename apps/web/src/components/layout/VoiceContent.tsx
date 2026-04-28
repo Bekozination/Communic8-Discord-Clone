@@ -58,7 +58,7 @@ export function VoiceContent() {
             return (
               <div key={userId} className="bg-surface-700 rounded-xl border border-surface-600 flex flex-col items-center justify-center relative overflow-hidden shadow-lg min-h-[200px]">
                 <div className="w-24 h-24 rounded-full bg-brand-primary flex items-center justify-center mb-4 text-white text-3xl font-bold">
-                  {member?.user?.displayName?.slice(0,2).toUpperCase() || "?"}
+                  {member?.user?.displayName?.slice(0,2)?.toUpperCase() || "?"}
                 </div>
                 <span className="bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium absolute bottom-4 left-4">
                   {member?.user?.displayName || "Kullanıcı"}

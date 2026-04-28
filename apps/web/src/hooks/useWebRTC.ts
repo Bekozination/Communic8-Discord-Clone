@@ -25,23 +25,28 @@ export function useWebRTC(channelId: string | null) {
     let mounted = true;
 
     // 1. Get User Media
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-      .then((stream) => {
+    const getMedia = async () => {
+      try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error("Tarayıcı mikrofon erişimini desteklemiyor (HTTPS gerekli). Sadece dinleyici olarak katılıyorsunuz.");
+        }
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
         if (!mounted) {
-          // If component unmounted before we got the stream, stop it immediately
           stream.getTracks().forEach(track => track.stop());
           return;
         }
-        
         localStreamRef.current = stream;
         setLocalStream(stream);
-        
-        // Join socket room
-        socket.emit("voice:join", channelId);
-      })
-      .catch((err) => {
-        console.error("Mikrofon erişimi reddedildi veya hata oluştu:", err);
-      });
+      } catch (err: any) {
+        console.warn("Mikrofon alınamadı, sadece dinleyici modu:", err.message || err);
+      } finally {
+        if (mounted) {
+          socket.emit("voice:join", channelId);
+        }
+      }
+    };
+
+    getMedia();
 
     // 2. Handle User Joined (We are the existing user, we create offer)
     const handleUserJoined = async ({ userId }: { userId: string }) => {
@@ -107,6 +112,9 @@ export function useWebRTC(channelId: string | null) {
         localStreamRef.current.getTracks().forEach(track => {
           pc.addTrack(track, localStreamRef.current!);
         });
+      } else {
+        // Dinleyici modu: sadece ses almak istediğimizi belirt
+        pc.addTransceiver("audio", { direction: "recvonly" });
       }
 
       // Handle ICE Candidates

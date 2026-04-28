@@ -106,7 +106,7 @@ export function MainContent() {
     socket.emit("message:send", {
       channelId: activeChannelId,
       content: trimmed,
-      nonce: crypto.randomUUID(),
+      nonce: (typeof crypto !== "undefined" && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15),
     });
     setContent("");
     if (textareaRef.current) textareaRef.current.style.height = "auto";
