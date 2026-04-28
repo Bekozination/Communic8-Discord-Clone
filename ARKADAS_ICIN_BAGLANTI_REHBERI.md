@@ -26,6 +26,17 @@ Ağa başarıyla bağlandın. Artık tek yapman gereken herhangi bir web tarayı
 
 *(Not: Başında `https` değil, sadece `http` olmasına dikkat et)*
 
+### Adım 4: Mikrofon İznini Açmak (Çok Önemli 🎤)
+Uygulamamıza özel bir IP adresi üzerinden bağlandığımız için (HTTPS olmadığı için) Chrome gibi tarayıcılar güvenlik gereği mikrofonu otomatik kilitler. Odaya katılıp **karşı tarafı dinleyebilirsin ama senin sesinin de gitmesini istiyorsan** şu ayarı yapmalısın:
+
+1. Bilgisayarında veya telefonunda **Google Chrome** tarayıcısını aç.
+2. Adres çubuğuna şunu yazıp enter'a bas: `chrome://flags/#unsafely-treat-insecure-origin-as-secure`
+3. Açılan ekranda sarı ile vurgulanmış kutucuğa bizim adresimizi tam olarak yaz: `http://100.89.247.26:5173`
+4. Kutucuğun yanındaki (veya altındaki) menüden **"Enabled"** seçeneğini seç.
+5. Ekranın altındaki **"Relaunch"** butonuna basarak Chrome'un yeniden başlamasını sağla.
+
+Bu işlemi yaptıktan sonra ses kanalına girdiğinde tarayıcı mikrofon izni isteyecek ve sorunsuz konuşabileceksin!
+
 ---
 
 ### 🎮 İçeride Ne Yapacaksın?
